@@ -1,0 +1,73 @@
+Checkers – CLI Based Checkers Game - Rules
+=======================================================================================================================
+Checkers - CLI based Checkers Game.
+basic rules:
+    1. 2 players
+        a. Red
+        b. Black
+    2. Black player moves first
+    3. One board per game
+    4. 12 pieces for each player
+    5. Players place their pieces on the 12 dark squares in the first three rows closest to player.
+    6. Each of these rows should have a total of 4 pieces.
+    7. The back row (row closest to the player) is the KING ROW.
+    8. Pieces may only move 1 diagonal place forward towards their opponet.
+    9. Pieces must stay on the dark squares.
+    10. Capturing pieces is achieved by jumping over it.
+    11. The space on the other side of the piece you intend to capture must be empty.
+    12. You can chain together jumps as long as the above criteria is met.
+    13. If your piece makes it to the very back row you make re-take one capture piece and crown the piece you made it
+    to the other side of the board with. This is piece is no a King piece.
+    14. King pieces may still only move one space at a time during non-capturing moves. However, when capturing pieces
+    the king can move diagonally forward or backwards.
+    15. There is no limit to the amount of king pieces a player may have.
+
+=======================================================================================================================
+Board:
+
+What does my board need to provide? The board needs to be printed in some default state, say the initial setup of a
+checkers game. The board needs to be able to be printed in it's current state; where pieces are right now. The board
+should also provide a method to add a piece to the board somewhere, and remove the piece from the board. At a high level
+this is what our board class should provide.
+
+Diving a little deeper we need to consider the HOW of providing this to other developers. Let's discuss the details
+
+1. We need to be able to create a board from our class. This can be accomplished with a general constructor.
+2. We need to be able to print the board at any time for our user. Let's first print a blank board.
+
+So at a bare minimum I want to accomplish printing an empty board; even if it's literally just empty and all NULL.
+
+If I start thinking about that process something comes to mind, a board is made up of squares that intersect by row &
+column (x,y). I'll create a class called Square or position; something along those lines.
+
+This class would at a minimum have some coordinates, and a data type of a piece. We'll also need a method to set a piece
+on that square. So while overall we're broadly touching "the board" the board is itself made up of squares. So, with that
+in mind what I really want to do is create a board object, and then print out all the squares and whatever pieces might
+exist on them.
+
+Let's assume I'm just developing the board, not pieces. How can I go about doing this without a Piece class? Let's setup
+a generic Piece class that literally just contains a string, a name for the piece. We can even, at this point just print
+strings on the board. We can still get the same performance; though we'd need to come back to this and modify our methods
+later once we have our piece class.
+
+What should my board class have:
+
+Board:
+
+1. Data:
+    1a. Squares (we'll create several squares for our board)
+    2a. game pieces
+
+2. Methods:
+    2a. A general constructor
+    2b. A setBoard method to setup our board.
+    2c. A showBoard method to display the board.
+    2d. A setPiece to set a piece on a square
+    2e. A removePiece to remove a piece from the square.
+
+
+Generally speaking, this is how I'd think about the board. This may change as we dive in and I start to think about
+other aspects (pieces, moves, etc).
+
+At the end of the day, the board shouldn't care if the pieces move is valid (it'd be great if it did); it just needs to
+provide some method of adding a piece to our board.
