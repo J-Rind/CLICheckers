@@ -1,5 +1,3 @@
-Checkers – CLI Based Checkers Game - Rules
-=======================================================================================================================
 Checkers - CLI based Checkers Game.
 basic rules:
     1. 2 players
@@ -21,8 +19,51 @@ basic rules:
     14. King pieces may still only move one space at a time during non-capturing moves. However, when capturing pieces
     the king can move diagonally forward or backwards.
     15. There is no limit to the amount of king pieces a player may have.
-
 =======================================================================================================================
+Summary: In order to play checkers we need at a minimum 4 physical things:
+    1. A red player.
+    2. A black player
+    3. Game pieces.
+    4. A game board.
+
+We would at least need the following classes to accomplish this.
+    1. Player
+    2. GamePieces
+    3. GameBoard.
+
+If we think about this more deeply, we can actually seperate these out further. The goal should be to abstract as much
+as reasonably possible.
+
+We need to create at least the above so we can have a game of checkers.
+=======================================================================================================================
+Board:
+
+    What is a board? It's a square piece of material (cardboard, wood, metal, anything we can make a square from). The
+    board is a grid of 8 rows, and 8 columns. The intersection of a column and row create a "spot" or "square". White
+    or "light" square are not used. Dark squares can contain pieces.
+
+    Thinking like this we would have 2 classes related to the board.
+
+    A Board class, and a Square class. The board would use Squares to construct a game surface for us to plan on.
+
+    Our board needs the following basic features.
+
+        1. We need to be able to "create" a board. Even if it's empty.
+
+        2. We need to be able to set the board up to the default starting positon for all pieces.
+
+        3. At any time we need to be able to print the board out and display it's current state: where all the pieces are.
+
+    To accomplish this our Board class would rely on a Square class. This Square class would be used to build out our
+    rows and columns. It would also be used to display and "hold" pieces. At anytime I should be able to call something
+    like:
+        Square.getPiece();
+
+    This is an over simplificaiton, but it's the heart of what we need. That should return to us whether a regular
+    piece, king piece or no piece is on it. We should also be able to determine what "player" controls that piece (red
+    or black).
+
+====================Notes on board continued===========================================================================
 Board:
 
 What does my board need to provide? The board needs to be printed in some default state, say the initial setup of a
@@ -71,3 +112,15 @@ other aspects (pieces, moves, etc).
 
 At the end of the day, the board shouldn't care if the pieces move is valid (it'd be great if it did); it just needs to
 provide some method of adding a piece to our board.
+
+Square:
+
+1. Data:
+    1a. xCord
+    1b. yCord
+    1b. Piece
+
+2. Methods:
+    2a. setPiece
+    2b. setPiece
+    2c. A general constructor
