@@ -124,3 +124,6 @@ Square:
     2a. setPiece
     2b. setPiece
     2c. A general constructor
+
+
+I'm adding some notes for demo purposes
